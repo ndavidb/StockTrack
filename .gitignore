@@ -4,4 +4,4 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea/*
-/.idea/*
+appsettings.Development.jsongit push origin main
