@@ -1,7 +1,8 @@
 bin/
 obj/
 /packages/
-riderModule.iml
-/_ReSharper.Caches/
+ridermodule.iml
+/_resharper.caches/
 .idea/*
-appsettings.Development.jsongit push origin main
+appsettings.development.json
+.env

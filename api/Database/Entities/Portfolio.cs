@@ -1,4 +1,6 @@
-﻿namespace api.Database.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace api.Database.Entities;
 
 public class Portfolio
 {
@@ -7,6 +9,7 @@ public class Portfolio
     public int StockId { get; set; }
     public decimal PurchasePrice { get; set; }
     public DateTime PurchaseDate { get; set; }
-    // public AppUser AppUser { get; set; }
+    
+    public IdentityUser AppUser { get; set; }
     public Stock Stock { get; set; }
 }

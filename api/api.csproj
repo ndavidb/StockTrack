@@ -19,8 +19,10 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.1.0-preview.1.25064.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.0.2" />
+        <PackageReference Include="StackExchange.Redis" Version="2.8.24" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,12 +33,11 @@
 
     <ItemGroup>
       <Folder Include="Common\Middleware\" />
-      <Folder Include="Database\Configurations\" />
       <Folder Include="Database\Migrations\" />
-      <Folder Include="External\" />
+      <Folder Include="External\FinancialModellingPrep\" />
       <Folder Include="Features\Portfolio\" />
-      <Folder Include="Features\Stocks\" />
-      <Folder Include="Infrastructure\Authentication\" />
+      <Folder Include="Features\Stocks\DeleteStock\" />
+      <Folder Include="Features\Stocks\UpdateStock\" />
       <Folder Include="Infrastructure\Caching\" />
       <Folder Include="Infrastructure\Messaging\" />
     </ItemGroup>
