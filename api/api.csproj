@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="ErrorOr" Version="2.0.1" />
         <PackageReference Include="FluentValidation" Version="12.0.0-preview1" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0-preview1" />
@@ -19,8 +21,10 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.1.0-preview.1.25064.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.0.2" />
+        <PackageReference Include="StackExchange.Redis" Version="2.8.24" />
     </ItemGroup>
 
     <ItemGroup>
@@ -30,15 +34,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Common\Exceptions\" />
       <Folder Include="Common\Middleware\" />
-      <Folder Include="Database\Configurations\" />
       <Folder Include="Database\Migrations\" />
-      <Folder Include="External\" />
       <Folder Include="Features\Portfolio\" />
-      <Folder Include="Features\Stocks\" />
+      <Folder Include="Features\Stocks\DeleteStock\" />
       <Folder Include="Infrastructure\Authentication\" />
       <Folder Include="Infrastructure\Caching\" />
-      <Folder Include="Infrastructure\Messaging\" />
+      <Folder Include="Infrastructure\Email\" />
     </ItemGroup>
 
 </Project>
