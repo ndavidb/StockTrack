@@ -1,10 +1,7 @@
-
-
-
 export async function searchCompanies(query: string) {
 
     try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${query}&limit=15&exchange=NASDAQ&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
+        const response = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${query}&limit=5&exchange=NASDAQ&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
         if (!response.ok) {
             throw new Error("Request failed");
         }

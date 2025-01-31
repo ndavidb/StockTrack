@@ -1,8 +1,9 @@
 ﻿'use client';
 
-import {AppShell, Burger, Group, Skeleton, Title} from "@mantine/core";
+import {AppShell, Box, Burger, Group, Skeleton, Title} from "@mantine/core";
 import {Navbar} from "../../components/navbar/Navbar";
 import {useDisclosure} from "@mantine/hooks";
+import StockSearch from "./(overview)/_components/StockSearch";
 
 export default function Layout({children}: { children: any }) {
     const [opened, {toggle}] = useDisclosure();
@@ -15,6 +16,10 @@ export default function Layout({children}: { children: any }) {
             padding="md"
         >
             <AppShell.Header>
+                <Box visibleFrom="md" p="md">
+                    <StockSearch />
+                </Box>
+                
                 <Group px="md" pt="sm">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm"/>
                     {/*<MantineLogo size={30} />*/}
