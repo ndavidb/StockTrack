@@ -1,3 +1,5 @@
+# .Net 9
+
 bin/
 obj/
 /packages/
@@ -6,6 +8,8 @@ ridermodule.iml
 .idea/*
 appsettings.development.json
 .env
+
+# Nextjs
 # Logs
 logs
 *.log
