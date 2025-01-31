@@ -1,15 +1,17 @@
-﻿using api.Database;
+﻿using api.Common.Extensions;
+using api.Database;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Features.Stocks.GetStockBySymbol;
 
 public record GetStockBySymbolResponse(string symbol, string name, string industry, string sector, string website);
-public class GetStockBySymbol
+public class GetStockBySymbolHandler
 {
     public static async Task<IResult> Handle(
         AppDbContext db,
-        string symbol,
-        ILogger<GetStockBySymbol> logger,
+        [FromQuery] string symbol,
+        ILogger<GetStockBySymbolHandler> logger,
         CancellationToken cancellationToken)
     {
         try
@@ -39,5 +41,16 @@ public class GetStockBySymbol
             logger.LogError(e, "Error getting stock by symbol");
             throw;
         }
+    }
+}
+
+public class GetStockBySymbol : IEndpoint
+{
+    public static void MapEndpoint(IEndpointRouteBuilder app)
+    {
+        app.MapGet("/stocks/{symbol}", GetStockBySymbolHandler.Handle)
+            .WithName("GetStockBySymbol")
+            .WithSummary("Get a stock by symbol")
+            .WithTags("Stocks");
     }
 }

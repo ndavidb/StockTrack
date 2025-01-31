@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="ErrorOr" Version="2.0.1" />
         <PackageReference Include="FluentValidation" Version="12.0.0-preview1" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0-preview1" />
@@ -32,14 +34,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Common\Exceptions\" />
       <Folder Include="Common\Middleware\" />
       <Folder Include="Database\Migrations\" />
-      <Folder Include="External\FinancialModellingPrep\" />
       <Folder Include="Features\Portfolio\" />
       <Folder Include="Features\Stocks\DeleteStock\" />
-      <Folder Include="Features\Stocks\UpdateStock\" />
+      <Folder Include="Infrastructure\Authentication\" />
       <Folder Include="Infrastructure\Caching\" />
-      <Folder Include="Infrastructure\Messaging\" />
+      <Folder Include="Infrastructure\Email\" />
     </ItemGroup>
 
 </Project>
