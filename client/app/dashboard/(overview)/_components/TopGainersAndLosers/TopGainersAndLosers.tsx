@@ -10,6 +10,7 @@ import {
   ScrollArea,
   NumberFormatter,
   Box,
+  Card,
 } from "@mantine/core";
 import { useState } from "react";
 
@@ -33,7 +34,7 @@ export default function TopGainersAndLossers({
   const [scrolled, setScrolled] = useState(false);
 
   const renderTable = (data: TickerData[], title: string) => (
-    <Box w="30%">
+    <Box w={{base: "100%", md: "100%", lg: "30%"}}>
       <ScrollArea h={265} scrollbarSize={4}>
         <Title
           ta="center"
@@ -45,7 +46,7 @@ export default function TopGainersAndLossers({
           {title}
         </Title>
 
-        <Table striped stickyHeader highlightOnHover r="sm" w="100%">
+        <Table striped stickyHeader highlightOnHover w="100%" withTableBorder>
           <Table.Thead>
             <Table.Tr>
               <Table.Th></Table.Th>
@@ -78,22 +79,22 @@ export default function TopGainersAndLossers({
   );
 
   return (
-    <Container fluid>
-      <Group py="lg">
+    <Card shadow="sm" p="sm" bg="white">
+      <Group p="sm" mb="sm" justify="space-between">
         <Title order={2}>Top Gainers, Losers, Most Actively Traded</Title>
-        <Text>Last updated: {last_updated}</Text>
+        <Text mr="xl">Last updated: {last_updated}</Text>
       </Group>
       <Flex
         direction={{ base: "column", sm: "row" }}
-        justify="space-between"
+        justify="space-around"
         align="stretch"
         gap={{ base: "lg", sm: "md" }}
-        wrap={{ base: "wrap", sm: "nowrap" }}
+        wrap="wrap"
       >
         {renderTable(top_gainers, "Gainers")}
         {renderTable(top_losers, "Losers")}
         {renderTable(most_actively_traded, "Most Actively Traded")}
       </Flex>
-    </Container>
+    </Card>
   );
 }

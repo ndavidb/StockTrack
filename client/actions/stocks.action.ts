@@ -1,3 +1,7 @@
+"use server";
+
+import { cookies } from "next/headers"
+
 export async function searchCompanies(query: string) {
   try {
     const response = await fetch(
@@ -138,10 +142,9 @@ export async function getCompanyIncomeStatement(query: string) {
 }
 
 export async function getStocksPortfolio(): Promise<StockPortfolio[]> {
-  const { cookies } = await import("next/headers");
-  const cookieManager = cookies();
-
-  const token = cookieManager.get("token")?.value;
+  
+  const cookieStore = await cookies();
+  const token = cookieStore.get('.AspNetCore.Identity.Application')?.value;
 
   if (!token) {
     throw new Error("No authentication token found");
@@ -149,7 +152,7 @@ export async function getStocksPortfolio(): Promise<StockPortfolio[]> {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/Portfolios`,
+      `${process.env.NEXT_PUBLIC_DEV_API}/Portfolios`,
       {
         method: "GET",
         headers: {
@@ -188,13 +191,13 @@ export async function getPortfolioPerformance(): Promise<
   StockPortfolioPerformance[]
 > {
   const { cookies } = await import("next/headers");
-  const cookieManager = cookies();
+  const cookieManager = await cookies();
 
-  const token = cookieManager.get("token")?.value;
+  const token = cookieManager.get(".AspNetCore.Identity.Application")?.value;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/Portfolios/stocks-performance`,
+      `${process.env.NEXT_PUBLIC_DEV_API}/Portfolios/stocks-performance`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

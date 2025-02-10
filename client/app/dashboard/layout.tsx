@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: any }) {
         </Group>
         <Navbar />
       </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main bg="var(--mantine-color-primary-0)">{children}</AppShell.Main>
     </AppShell>
   );
 }

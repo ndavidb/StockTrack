@@ -62,10 +62,10 @@ export default function CashFlowPage() {
   };
 
   return (
-    <Box p="sm">
+    <Box py="sm">
       <Grid mb="lg">
         <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Operating Cash Flow
             </Text>
@@ -75,7 +75,7 @@ export default function CashFlowPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Free Cash Flow
             </Text>
@@ -85,7 +85,7 @@ export default function CashFlowPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 12, lg: 4 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Capital Expenditure
             </Text>
@@ -96,7 +96,7 @@ export default function CashFlowPage() {
         </Grid.Col>
       </Grid>
 
-      <Card withBorder>
+      <Card withBorder shadow="sm">
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
@@ -145,7 +145,7 @@ export default function CashFlowPage() {
               { label: "Free Cash Flow", key: "freeCashFlow" },
             ].map(({ label, key }) => (
               <Table.Tr key={key}>
-                <Table.Td>{label}</Table.Td>
+                <Table.Td fw={600}>{label}</Table.Td>
                 {cashFlow.slice(0, 4).map((cf) => (
                   <Table.Td key={cf.date}>
                     {formatValue(cf[key as keyof CompanyCashFlow] as number)}

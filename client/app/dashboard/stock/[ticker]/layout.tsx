@@ -52,7 +52,7 @@ export default function StockLayout({
 
   return (
     <Box>
-      <Paper radius={0} bg="var(--mantine-color-gray-0)">
+      <Paper radius="sm" bg="white" shadow="sm">
         <Container fluid>
           {/* Stock Info Header */}
           <Box py="md">

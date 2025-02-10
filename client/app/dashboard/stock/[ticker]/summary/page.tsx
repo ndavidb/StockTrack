@@ -4,6 +4,7 @@ import {
   getCompanyDailyPrice,
   getCompanyProfile,
 } from "../../../../../actions/stocks.action";
+import StockSectors from "./_components/stockSectors";
 import StockSummary from "./_components/stockSummary";
 
 export default async function StockSummaryPage({

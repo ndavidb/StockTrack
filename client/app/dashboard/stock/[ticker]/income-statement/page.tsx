@@ -72,10 +72,10 @@ export default function IncomeStatementPage() {
   };
 
   return (
-    <Box p="sm">
-      <Grid mb="lg">
+    <Box py="sm">
+      <Grid mb="sm">
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Revenue
             </Text>
@@ -85,7 +85,7 @@ export default function IncomeStatementPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Gross Profit
             </Text>
@@ -98,7 +98,7 @@ export default function IncomeStatementPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Operating Income
             </Text>
@@ -125,7 +125,7 @@ export default function IncomeStatementPage() {
         </Grid.Col>
       </Grid>
 
-      <Card withBorder>
+      <Card withBorder shadow="sm">
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
@@ -159,7 +159,7 @@ export default function IncomeStatementPage() {
               { label: "EBITDA", key: "ebitda" },
             ].map(({ label, key }) => (
               <Table.Tr key={key}>
-                <Table.Td>{label}</Table.Td>
+                <Table.Td fw={600}>{label}</Table.Td>
                 {incomeStatement.slice(0, 4).map((statement) => (
                   <Table.Td key={statement.date}>
                     {formatValue(

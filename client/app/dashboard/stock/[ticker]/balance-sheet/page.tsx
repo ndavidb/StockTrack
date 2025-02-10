@@ -64,10 +64,10 @@ export default function BalanceSheetPage() {
   };
 
   return (
-    <Box p="sm">
-      <Grid mb="lg">
+    <Box py="sm">
+      <Grid mb="sm">
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Total Assets
             </Text>
@@ -77,7 +77,7 @@ export default function BalanceSheetPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Total Liabilities
             </Text>
@@ -87,7 +87,7 @@ export default function BalanceSheetPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Total Equity
             </Text>
@@ -97,7 +97,7 @@ export default function BalanceSheetPage() {
           </Card>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-          <Card withBorder padding="lg">
+          <Card withBorder padding="lg" shadow="sm">
             <Text size="sm" c="dimmed">
               Working Capital
             </Text>
@@ -111,7 +111,7 @@ export default function BalanceSheetPage() {
         </Grid.Col>
       </Grid>
 
-      <Card withBorder>
+      <Card withBorder shadow="sm">
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
@@ -151,7 +151,7 @@ export default function BalanceSheetPage() {
               },
             ].map(({ label, key }) => (
               <Table.Tr key={key}>
-                <Table.Td>{label}</Table.Td>
+                <Table.Td fw={600}>{label}</Table.Td>
                 {balanceSheet.slice(0, 4).map((sheet) => (
                   <Table.Td key={sheet.date}>
                     {formatValue(

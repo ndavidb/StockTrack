@@ -1,4 +1,4 @@
-﻿using api.Database.Entities;
+﻿using api.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,11 +22,23 @@ public class StockConfiguration : IEntityTypeConfiguration<Stock>
             .IsRequired()
             .HasMaxLength(100);
         
+        builder.Property(s => s.Sector)
+            .IsRequired()
+            .HasMaxLength(100);
+        
+        builder.Property(s => s.Website)
+            .IsRequired()
+            .HasMaxLength(100);
+        
         builder.HasIndex(s => s.Symbol).IsUnique();
         builder.HasIndex(s => s.CompanyName);
 
         builder.HasMany(s => s.StockPrices)
             .WithOne(sp => sp.Stock)
             .HasForeignKey(sp => sp.StockId);
+        
+        builder.HasMany(s => s.PortfolioStocks)
+            .WithOne(ps => ps.Stock)
+            .HasForeignKey(ps => ps.StockId);
     }
 }
