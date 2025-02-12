@@ -18,10 +18,16 @@ public class GetPortfoliosHandler(AppDbContext db, ILogger<GetPortfoliosHandler>
                 .Select(p => new PortfolioDto(
                     p.Id,
                     p.PortfolioName,
-                    p.Description)
+                    p.Description,
+                    p.Created)
                     ).ToListAsync(cancellationToken);
 
             logger.LogInformation("Portfolio retrieved successfully for {userId}", userId);
+
+            if (portfolios.Count == 0)
+            {
+                return Error.NotFound("Portfolios not found");
+            }
             return portfolios;
         }
         catch (Exception e)

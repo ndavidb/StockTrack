@@ -8,6 +8,9 @@ public class PortfolioStockConfiguration : IEntityTypeConfiguration<PortfolioSto
 {
     public void Configure(EntityTypeBuilder<PortfolioStock> builder)
     {
+        builder.Property(x => x.PurchaseDate).IsRequired();
+        builder.Property(x => x.PurchasePrice).IsRequired();
+        
         builder.HasOne(ps => ps.Stock)
             .WithMany(ps => ps.PortfolioStocks)
             .HasForeignKey(ps => ps.StockId)

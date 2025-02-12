@@ -26,6 +26,11 @@ public class StockConfiguration : IEntityTypeConfiguration<Stock>
             .IsRequired()
             .HasMaxLength(100);
         
+        builder.Property(s => s.Country).HasMaxLength(100).IsRequired();
+        
+        builder.Property(s => s.MarketCap).IsRequired();
+        builder.Property(s => s.Sector).IsRequired();
+        
         builder.Property(s => s.Website)
             .IsRequired()
             .HasMaxLength(100);

@@ -6,6 +6,8 @@ public class Stock : EntityBase
     public string CompanyName { get; set; } = string.Empty;
     public string Industry { get; set; } = string.Empty;
     public string Sector { get; set; } = string.Empty;
+    public string Country { get; set; } = string.Empty;
+    public string Currency { get; set; } = string.Empty;
     public long MarketCap { get; set; }
     public string Website { get; set; } = string.Empty;
     
