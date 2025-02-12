@@ -1,182 +1,271 @@
+"use server";
+
+import { cookies } from "next/headers"
+
 export async function searchCompanies(query: string) {
-
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${query}&limit=5&exchange=NASDAQ&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-
-        const data: CompanySearch[] = await response.json();
-        return data;
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error("Error message: ", error.message);
-        } else {
-            console.error("Unexpected error: ", error);
-        }
-        return "Unexpected error occurred.";
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=5&exchange=NASDAQ&apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const data: CompanySearch[] = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error message: ", error.message);
+    } else {
+      console.error("Unexpected error: ", error);
+    }
+    return "Unexpected error occurred.";
+  }
 }
 
 export async function getCompanyProfile(query: string) {
-    
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-        const data: CompanyProfile[] = await response.json();
-        return data;
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error("Error message: ", error.message);
-        } else {
-            console.error("Unexpected error: ", error);
-        }
-        return undefined;
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request to get the company profile failed");
     }
+    const data: CompanyProfile[] = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error message: ", error.message);
+    } else {
+      console.error("Unexpected error: ", error);
+    }
+    return undefined;
+  }
 }
 
 export async function getCompanyKeyMetrics(query: string) {
-
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-
-        const data: CompanyKeyMetrics[] = await response.json();
-        return data;
-    } catch (error: any) {
-        console.error('Error fetching key metrics:', error.message);
-        return undefined;
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const data: CompanyKeyMetrics[] = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching key metrics:", error.message);
+    return undefined;
+  }
 }
 
 export async function getCompanyBalanceSheet(query: string) {
-    
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/balance-sheet-statement/${query}?limit=40&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-
-        const data: CompanyBalanceSheet[] = await response.json();
-        return data;
-    } catch (error: any) {
-        console.error('Error fetching balance sheet:', error.message);
-        return undefined;
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${query}?limit=40&apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const data: CompanyBalanceSheet[] = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching balance sheet:", error.message);
+    return undefined;
+  }
 }
 
 export async function getCompanyCashFlow(query: string) {
-    
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=40&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-
-        const data: CompanyCashFlow[] = await response.json();
-        return data;
-    } catch (error: any) {
-        console.error('Error fetching CashFlow data:', error.message);
-        return undefined;
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=40&apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const data: CompanyCashFlow[] = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching CashFlow data:", error.message);
+    return undefined;
+  }
 }
 
 export async function getCompanyIncomeStatement(query: string) {
-    
-    try {
-        const response = await fetch(`https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=50&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-        if (!response.ok) {
-            throw new Error("Request failed");
-        }
-
-        const data: CompanyIncomeStatement[] = await response.json();
-        return data;
-    } catch (error: any) {
-        console.error('Error fetching CashFlow data:', error.message);
-        return undefined;
+  try {
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=50&apikey=${process.env.NEXT_PUBLIC_FMP_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const data: CompanyIncomeStatement[] = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching CashFlow data:", error.message);
+    return undefined;
+  }
 }
 
 export async function getStocksPortfolio(): Promise<StockPortfolio[]> {
+  
+  const cookieStore = await cookies();
+  const token = cookieStore.get('.AspNetCore.Identity.Application')?.value;
 
-    const {cookies} = await import('next/headers');
-    const cookieManager = cookies();
+  if (!token) {
+    throw new Error("No authentication token found");
+  }
 
-    const token = cookieManager.get('token')?.value;
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DEV_API}/Portfolios`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        cache: "no-store",
+      }
+    );
 
-    if (!token) {
-        throw new Error('No authentication token found');
+    if (response.status === 401) {
+      // Handle unauthorized access
+      throw new Error("Unauthorized access");
     }
 
-    try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Portfolios`, {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            cache: 'no-store'
-        });
-
-        if (response.status === 401) {
-            // Handle unauthorized access
-            throw new Error('Unauthorized access');
-        }
-
-        if (!response.ok) {
-            throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (!Array.isArray(data)) {
-            console.error('Received non-array data:', data);
-            throw new Error('Invalid data format received from server');
-        }
-
-        return data as StockPortfolio[];
-    } catch (error: any) {
-        console.error('Error fetching portfolio:', error.message);
-        throw error;
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
     }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      console.error("Received non-array data:", data);
+      throw new Error("Invalid data format received from server");
+    }
+
+    return data as StockPortfolio[];
+  } catch (error: any) {
+    console.error("Error fetching portfolio:", error.message);
+    throw error;
+  }
 }
 
-export async function getPortfolioPerformance() : Promise<StockPortfolioPerformance[]>{
-    
-    const {cookies} = await import('next/headers');
-    const cookieManager = cookies();
-    
-    const token = cookieManager.get('token')?.value;
-    
-    try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Portfolios/stocks-performance`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            credentials: 'include',
-        });
-        
-        if (!response.ok){
-            throw new Error(`Request failed with status ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (!Array.isArray(data)){
-            console.error('Received non-array data:', data);
-            throw new Error('Invalid data format received from server');
-        }
-        
-        return data as StockPortfolioPerformance[];
-    } catch (error: any) {
-        console.error('Error fetching portfolio:', error.message);
-        throw error;
+export async function getPortfolioPerformance(): Promise<
+  StockPortfolioPerformance[]
+> {
+  const { cookies } = await import("next/headers");
+  const cookieManager = await cookies();
+
+  const token = cookieManager.get(".AspNetCore.Identity.Application")?.value;
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DEV_API}/Portfolios/stocks-performance`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
     }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      console.error("Received non-array data:", data);
+      throw new Error("Invalid data format received from server");
+    }
+
+    return data as StockPortfolioPerformance[];
+  } catch (error: any) {
+    console.error("Error fetching portfolio:", error.message);
+    throw error;
+  }
 }
 
+export async function getCompanyDailyPrice(
+  symbol: string
+): Promise<AlphaVantageDailyResponse> {
+  try {
+    const response = await fetch(
+      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${process.env.NEXT_PUBLIC_AV_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
 
+    const data: AlphaVantageDailyResponse = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching profile data:", error.message);
+    throw error;
+  }
+}
+
+export async function getGainersAndLossers(): Promise<StockGainersLossersResponse> {
+  try {
+    const response = await fetch(
+      `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${process.env.NEXT_PUBLIC_AV_KEY}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch gainers and losers");
+    }
+
+    const data: StockGainersLossersResponse = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("Error fetching profile data:", error.message);
+    throw error;
+  }
+}

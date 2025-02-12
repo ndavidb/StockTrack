@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace api.Database.Entities;
+namespace api.Database.Models;
 
-public class Portfolio
+public class Portfolio : EntityBase
 {
-    public int Id { get; set; }
-    public string AppUserId { get; set; }
-    public int StockId { get; set; }
-    public decimal PurchasePrice { get; set; }
-    public DateTime PurchaseDate { get; set; }
+    public string UserId { get; set; }
+    public string PortfolioName { get; set; }
+    public string Description { get; set; }
     
-    public IdentityUser AppUser { get; set; }
-    public Stock Stock { get; set; }
+    // Navigation Properties
+    public AppUser AppUser { get; set; }
+    public ICollection<PortfolioStock> PortfolioStocks { get; set; } = new List<PortfolioStock>();
 }

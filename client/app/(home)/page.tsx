@@ -1,6 +1,12 @@
+import { Button } from "@mantine/core";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <Button>
+        <Link href="/dashboard">Dashboard</Link>
+      </Button>
+    </div>
   );
 }

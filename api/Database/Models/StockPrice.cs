@@ -1,12 +1,11 @@
-﻿namespace api.Database.Entities;
+﻿namespace api.Database.Models;
 
-public class StockPrice
+public class StockPrice : EntityBase
 {
-    public int Id { get; set; }
-    public string Symbol { get; set; } = string.Empty;
-    public DateTime Date { get; set; }
+    public DateTime PriceDate { get; set; }
     public decimal Price { get; set; }
-    public int StockId { get; set; }
-    
+
+    // Navigation Properties
+    public Guid StockId { get; set; }
     public Stock Stock { get; set; }
 }
