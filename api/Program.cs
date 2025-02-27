@@ -9,6 +9,7 @@ using api.Features.Portfolios.GetPortfolio;
 using api.Features.Portfolios.GetPortfolios;
 using api.Features.Portfolios.UpdatePortfolio;
 using api.Features.Stocks.CreateStock;
+using api.Features.Stocks.GetStock;
 using api.Infrastructure.External.FMP;
 using ErrorOr;
 using FluentValidation;
@@ -35,6 +36,7 @@ builder.Services.AddScoped<GetPortfoliosHandler>();
 builder.Services.AddScoped<DeletePortfolioHandler>();
 builder.Services.AddScoped<CreateStockHandler>();
 builder.Services.AddScoped<AddStockToPortfolioHandler>();
+builder.Services.AddScoped<GetStockHandler>();
 builder.Services.AddHttpClient<FmpService>();
 
 // Libraries

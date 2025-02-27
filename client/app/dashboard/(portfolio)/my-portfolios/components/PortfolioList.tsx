@@ -15,6 +15,8 @@ import {
   rem,
   Paper,
   Pagination,
+  Center,
+  Space,
 } from "@mantine/core";
 import {
   IconDotsVertical,
@@ -65,6 +67,7 @@ export function PortfolioList({
     description: "",
   });
 
+  
   const handleEdit = async () => {
     try {
       if (!selectedPortfolio) return;
@@ -144,6 +147,74 @@ export function PortfolioList({
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
+  
+  if (portfolios.length === 0) {
+    return (
+      <Paper shadow="xs" mih={400} p="md" radius="md">
+          <Stack justify="center" align="center" mih={400}>
+            <Text align="center" size="lg" >You do not have any portfolio yet. Start by Adding the first one</Text>
+            <Space h="md" />
+            <Button
+                onClick={openCreateModal}
+                variant="filled"
+                leftSection={<IconPlus size={16} />}
+            >
+              Create Portfolio
+            </Button>
+          </Stack>
+        <Modal
+            opened={isCreateModalOpen}
+            onClose={() => {
+              closeCreateModal();
+              setCreateForm({ portfolioName: "", description: "" });
+            }}
+            title="Create Portfolio"
+            styles={{ title: { fontSize: rem(18), fontWeight: 600 } }}
+            centered
+        >
+          <Stack>
+            <TextInput
+                label="Name"
+                placeholder="Portfolio name"
+                value={createForm.portfolioName}
+                onChange={(e) =>
+                    setCreateForm({
+                      ...createForm,
+                      portfolioName: e.currentTarget.value,
+                    })
+                }
+                required
+            />
+            <Textarea
+                label="Description"
+                placeholder="Portfolio description"
+                value={createForm.description}
+                onChange={(e) =>
+                    setCreateForm({
+                      ...createForm,
+                      description: e.currentTarget.value,
+                    })
+                }
+                minRows={3}
+            />
+            <Group justify="flex-end" mt="md">
+              <Button
+                  variant="light"
+                  onClick={() => {
+                    closeCreateModal();
+                    setCreateForm({ portfolioName: "", description: "" });
+                  }}
+              >
+                Cancel
+              </Button>
+              <Button onClick={handleCreate}>Create</Button>
+            </Group>
+          </Stack>
+        </Modal>
+      </Paper>
+    );
+  }
+  
 
   return (
     <Paper shadow="xs" p="md" radius="md">
@@ -235,7 +306,7 @@ export function PortfolioList({
           total={pageCount}
           value={currentPage}
           onChange={setCurrentPage}
-          position="right"
+          ps="right"
         />
       </Stack>
 

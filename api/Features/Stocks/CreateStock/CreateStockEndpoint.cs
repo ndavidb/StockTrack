@@ -25,6 +25,7 @@ public class CreateStockEndpoint : IEndpoint
     {
         var result = await handler.Handler(request, cancellationToken);
         
+
         return result.Match(
             stock => Results.Created($"/api/stock/", stock),
             errors => Results.BadRequest(errors));

@@ -9,8 +9,7 @@ interface Portfolio {
 }
 
 export default async function PortfoliosPage() {
-  const portfolios = await getPortfolios();
-
+  const portfolios  = await getPortfolios();
   return (
     <Container fluid>
       <Title order={2} mb="lg">

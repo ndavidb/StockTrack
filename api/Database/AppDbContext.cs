@@ -13,6 +13,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     
     public DbSet<Stock> Stocks { get; set; }
     public DbSet<StockPrice> StockPrices { get; set; }
+    public DbSet<PortfolioStock> PortfolioStocks { get; set; }
     public DbSet<Portfolio> Portfolios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

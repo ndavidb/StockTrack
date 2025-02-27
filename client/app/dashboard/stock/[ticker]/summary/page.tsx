@@ -1,10 +1,7 @@
-"use server";
-
 import {
   getCompanyDailyPrice,
   getCompanyProfile,
 } from "../../../../../actions/stocks.action";
-import StockSectors from "./_components/stockSectors";
 import StockSummary from "./_components/stockSummary";
 
 export default async function StockSummaryPage({
@@ -12,8 +9,12 @@ export default async function StockSummaryPage({
 }: {
   params: { ticker: string };
 }) {
-  const profile = await getCompanyProfile(params.ticker);
-  const daily = await getCompanyDailyPrice(params.ticker);
+  const { ticker } = await params;
+
+  if (!ticker) return <div>Invalid Ticker</div>;
+
+  const profile = await getCompanyProfile(ticker);
+  const daily = await getCompanyDailyPrice(ticker);
 
   if (!profile?.[0]) {
     return <div>Profile not found</div>;

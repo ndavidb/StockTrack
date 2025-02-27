@@ -24,11 +24,7 @@ const mockdata = [
     label: "Portfolio",
     icon: IconCoins,
     initiallyOpened: true,
-    links: [
-      { label: "Overview", link: "/" },
-      { label: "Balance Sheet", link: "/" },
-      { label: "Profit & Loss", link: "/" },
-    ],
+    links: [{ label: "Overview", link: "/dashboard/my-portfolios" }],
   },
   {
     label: "Tools",
